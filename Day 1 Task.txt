@@ -1,0 +1,131 @@
+TASK 1:
+
+DIFFERENCE BETWEEN HTTP 1.1 VS HTTP2
+
+HTTP 1.1:
+
+HTTP 1.1 is the latest version of Hypertext Transfer Protocol (HTTP), the World Wide Web application protocol that runs on top of the Internet's TCP/IP suite of protocols.
+HTTP 1.1 provides faster delivery of Web pages than the original HTTP and reduces Web traffic.
+It was no longer required for each connection to be terminated immediately after every request was served with a response; instead, with the keep-alive header, it was possible to have persistent connections. It allowed multiple requests/responses per TCP connection.
+The Upgrade header was used to indicate a preference from the client that made it possible to switch to a more preferred protocol if found appropriate by the server.
+HTTP/1.1 provided support for chunk transfers that allowed streaming of content dynamically as chunks and for additional headers to be sent after the message body. This enhancement was particularly useful in cases where values of a field remained unknown until the content had been produced. For example, when the content had to be digitally signed, it was not possible to do so before the entire content gets generated.
+pipelining (the second request is sent before the response to the first is adequately served).
+content negotiation (an exchange between client and server to determine the media type, it also provides the provision to serve different versions of a resource at the same URL).
+cache control (used to specify caching policies in both requests and responses).
+
+HTTP2:
+
+It introduces the concept of a server push where the server anticipates the resources that will be required by the client and pushes them prior to the client making requests. The client retains the authority to deny the server push; however, in most cases, this feature adds a lot of efficiency to the process.
+Introduces the concept of multiplexing that interleaves the requests and responses without head-of-line blocking and does so over a single TCP connection.
+It is a binary protocol i.e. only binary commands in the form of 0s and 1s are transmitted over the wire. The binary framing layer divides the message into frames that are segregated based on their type – Data or Header. This feature greatly increases efficiency in terms of security, compression and multiplexing.
+Uses multiplexing, where over a single TCP connection resources to be delivered are interleaved and arrive at the client almost at the same time. It is done using streams which can be prioritized, can have dependencies and individual flow control. It also provides a feature called server push that allows the server to send data that the client will need but has not yet requested.
+Underlying semantics of HTTP such as headers, status codes remains the same.
+Security concerns from previous versions will continue to be seen in HTTP/2. However, it is better equipped to deal with them due to new TLS features like connection error of type Inadequate_Security.
+HTTP/2 does not change much in terms of caching. With the server push feature if the client finds the resources are already present in the cache, it can cancel the pushed stream.
+HTTP/2 utilizes multiplexing and server push to effectively reduce the page load time by a greater margin along with being less sensitive to network delays.
+
+Task 2:
+
+Objects and its Internal Representation in Javascript:
+
+Objects are the representation of real-world entities in any language representing things by defining its properties along with their values. 
+In Javascript, objects may be defined as an unordered collection of related data, of primitive or reference types, in the form of “key: value” pairs.
+In real life object is an entity having state and behavior . For example: car, pen, bike, chair, glass, keyboard, monitor etc. In the same way JavaScript also has objects with properties as state and methods as behavior and they are represented in the form of
+
+Creating Objects in JavaScript:
+
+There are 3 ways to create objects.
+
+1.By object literal
+2.By creating instance of Object directly (using new keyword)
+3.By using an object constructor (using new keyword)
+4.By object literal
+
+1.Object literal:
+object literal is a comma-separated list of name-value pairs wrapped in curly braces. Object literals encapsulate data, enclosing it in a tidy package.
+
+The syntax of creating object using object literal is given below:
+
+var object={property1:value1,property2:value2...,propertyN:valueN}
+var car={id:1 , name:’abc’ , display:function() }
+
+As evident from the above example property values can be of any data type, including array literals, functions, nested object literals, or primitive data type.
+
+2.Object.create()
+The method creates a new object, using an existing object as the prototype of the newly created object.
+
+The method creates a new object, using an existing object as the prototype of the newly created object.
+
+using the object literal example as prototype-
+
+var car2 = Object.create(car);
+
+car.id=2;
+
+car.name = ‘xyz’;
+
+The syntax of creating object directly is given below:
+
+var objectname=new Object();
+
+3.Object constructor
+
+Useful when we require to create multiple objects of similar type. In this case, a constructor (kind of blueprint) is created and 
+multiple objects can be initialized using the new keyword using the constructor as a wrapper for the newly created objects.
+
+to create function with arguments. Each argument value can be assigned in the current object by using this keyword which refers to the current object.
+
+Example:
+
+function Person(name, age, eye) {
+this.Name = name;
+this.age = age;
+this.eyeColor = eye;
+}
+
+creating objects using constructor-
+
+var p1= new Person(“John”, 50, “blue”);
+var p2= new Person(“Sally”, 48, “green”);
+
+Object.assign()
+It is used to copy the values and properties from one or more source objects to a target object. It invokes getters and setters since it uses both [[Get]] on the source and [[Set]] on the target.
+
+Here is an example where properties from three source objects are getting assigned to a new object using Object.assign()
+
+Input : var obj1 = { a: 10 };
+var obj2 = { b: 20 };
+var obj3 = { c: 30 };
+var new_obj = Object.assign(o1, o2, o3);
+console.log(new_obj);
+Output : Object { a: 10, b: 20, c: 30 }
+
+Object.fromEntries
+This method transforms a list of key-value pairs into an object.
+
+const entries = new car([
+[‘id’, 4],
+[‘color’, ‘blue’]
+]);
+
+const car1= Object.fromEntries(entries);
+
+console.log(car1);
+output: Object { id: 4, color: ‘blue’}
+
+Unlike other object-oriented programming languages, javascript doesn’t have classes instead of that javascript is a prototype-based language allowing all the functionalities as in other class-based programming languages like JavaScript allows you to create hierarchies of objects and to have the inheritance of properties and their values and all this is done mainly using the constructor functions.
+
+
+Deleting object properties:
+
+Use the delete keyword to delete properties from a JSON object.
+
+Example:
+
+var car={name:"Fiat",color:"red",engine:"Chevy V8"};
+delete car.engine;
+console.log(car);//{ name: 'Fiat', color: 'red' }
+
+
+
+
